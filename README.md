@@ -31,7 +31,7 @@ This is a first project from [![ineuron_logo](https://ineuron.ai/images/ineuron-
 
 ## Demo
 
-#### Live demo: [yts-by-mg.herokuapp.com](yts-by-mg.herokuapp.com)
+#### Live demo: [yts-by-mg.herokuapp.com](https://yts-by-mg.herokuapp.com/)
 
 ## URL Reference
 
