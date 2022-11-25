@@ -1,0 +1,87 @@
+{% load static %}
+{% load humanize %}
+
+
+{% for video in videos %}
+  {% comment %} {% firstof video.channel.url channel.url as channel_id%} {% endcomment %}
+  <div class="video__card">
+    <div class="video__thumbnail">
+      <a href="{% url 'watch-video' %}?v={{ video.id }}" class="video__thumbnail--preview">
+        <img src="{{ video.thumbnail_url }}" alt="thumbnail">
+      </a>
+      <span class="video__duration">{{ video.length }}</span>
+    </div>
+    {% firstof video.channel.id channel.id as channel_id %}
+    {% if css_class.main is None or 'watch' not in css_class.main %}
+      <a href="{% url 'channel' channel_id %}" class="channel__profile">
+        <img src="{% firstof video.channel.thumbnail_url channel.profile_url%}" alt="youtuber">
+      </a>
+    {% endif %}
+    <div class="video__details">
+      <a href="{% url 'watch-video' %}?v={{ video.id }}" class="video__title" target="_blank">{{ video.title }}</a>
+      <div class="typo typo__flex">
+        <a href="{% url 'channel' channel_id %}" class="channel__title" target="_blank">
+          {% firstof video.channel.title channel.title %}</a>
+        <span class="video__views dot">{{ video.view_count | intword }} views</span>
+        <span class="video__published-at">{{ video.published_at | relative_date }}</span>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} 
+<section class="video-grid">
+  {% for video in videos %}
+  {% firstof video.channel.url channel.url as channel_id%}
+    <div class="video__card">
+      <div class="video__thumbnail">
+        <a href="{% url 'watch-video' %}?v={{ video.video_id }}" class="video__thumbnail--preview">
+          <img src="{{ video.thumbnail_url }}" alt="thumbnail">
+        </a>
+        <span class="video__duration">{{ video.duration }}</span>
+      </div>
+      {% if css_class.main is None or 'watch' not in css_class.main %}
+        <a href="{% url 'channel' 'channel' channel_id %}" class="channel__profile">
+          <img src="{% firstof video.channel.profile_url channel.profile_url%}" alt="youtuber">
+        </a>
+      {% endif %}
+      <div class="video__details">
+        <a href="{% url 'watch-video' %}?v={{ video.video_id }}" class="video__title" target="_blank">{{ video.title }}</a>
+        <div class="typo typo__flex">
+          <a href="{% url 'channel' 'channel' channel_id %}" class="channel__title" target="_blank">
+            {% firstof video.channel.title channel.title %}</a>
+          <span class="video__views dot">{{ video.view_count }} views</span>
+          <span class="video__published-at">{{ video.publish_at }}</span>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</section> {% endcomment %}

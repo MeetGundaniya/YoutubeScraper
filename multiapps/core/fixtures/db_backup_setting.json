@@ -1,0 +1,11 @@
+[
+  {
+    "model": "core.setting",
+    "pk": 1,
+    "fields": {
+      "key": "MAX_VIDEOS_FROM_CHANNEL",
+      "value": "10",
+      "description": "maximum videos from channel to fetch data"
+    }
+  }
+]

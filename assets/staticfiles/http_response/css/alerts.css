@@ -1,0 +1,222 @@
+.container-alert {
+  box-sizing: border-box
+}
+
+.container-alert .alert {
+  margin-bottom: 10px
+}
+
+.container-alert .alert:last-child {
+  margin-bottom: 0
+}
+
+.alert {
+  width: 99%;
+  padding: 15px;
+  position: relative;
+  border-left: 8px solid #bababa;
+  background: #ededed;
+  color: #a1a1a1;
+  border-radius: 4px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: left;
+  font-size: 16px
+}
+
+.alert .alert--close,
+.alert .alert--icon {
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 20px
+}
+
+.alert .alert--close_absolute,
+.alert .alert--icon_absolute {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  height: auto
+}
+
+.alert .alert--icon {
+  margin-right: 10px
+}
+
+.alert .alert--close {
+  margin-left: 10px;
+  opacity: .7;
+  transition: .5s;
+  cursor: pointer
+}
+
+.alert .alert--close:hover {
+  opacity: 1
+}
+
+.alert .alert--content {
+  width: 100%;
+  line-height: 1.5
+}
+
+.alert .alert--buttons {
+  width: 100%;
+  margin-top: 10px
+}
+
+.alert_sm {
+  padding: 10px;
+  font-size: 14px
+}
+
+.alert_sm .alert--close,
+.alert_sm .alert--icon {
+  font-size: 16px
+}
+
+.alert_lg {
+  font-size: 26px
+}
+
+.alert_lg .alert--close,
+.alert_lg .alert--icon {
+  font-size: 26px
+}
+
+.alert .hr {
+  height: 1px;
+  width: 100%;
+  border: none;
+  background: #ddd;
+  margin: 10px 0
+}
+
+.alert_success {
+  border-color: hsl(145, 67%, 51%);
+  background: hsl(145, 67%, 83%);
+  color: hsl(145, 66%, 41%)
+}
+
+.alert_success .hr {
+  background: hsl(145, 66%, 41%)
+}
+
+.alert_error {
+  border-color: hsl(355, 100%, 64%);
+  background: hsl(354, 100%, 84%);
+  color: hsl(355, 100%, 64%)
+}
+
+.alert_error .hr {
+  background: hsl(355, 100%, 64%)
+}
+
+.alert_warning {
+  border-color: hsl(39, 100%, 50%);
+  background: hsl(38, 100%, 80%);
+  color: hsl(39, 100%, 40%)
+}
+
+.alert_warning .hr {
+  background: hsl(39, 100%, 40%)
+}
+
+.alert_info {
+  border-color: hsl(203, 100%, 72%);
+  background: hsl(203, 100%, 87%);
+  color: hsl(203, 100%, 62%)
+}
+
+.alert_info .hr {
+  background: hsl(203, 100%, 62%)
+}
+
+.alert_debug {
+  border-color: hsl(0, 0%, 20%);
+  background: hsl(0, 0%, 37%);
+  color: hsl(0, 0%, 80%)
+}
+
+.alert_debug .hr {
+  background: hsl(0, 0%, 10%)
+}
+
+@keyframes showAlert {
+  from {
+    opacity: 0;
+    width: 95%;
+  }
+  to {
+    opacity: 1
+  }
+}
+
+.alert {
+  transition: .5s ease-in-out;
+  visibility: visible;
+  opacity: 1;
+  height: auto;
+  margin: 1rem auto;
+  overflow: hidden;
+  animation-name: showAlert;
+  animation-duration: .5s;
+  animation-fill-mode: both
+}
+
+.alert.alert_none {
+  display: none
+}
+
+.fixed-alerts {
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 9999999;
+  width: calc(100% - 20px);
+  max-width: calc(400px - 20px)
+}
+
+.fixed-alerts_bottom {
+  bottom: 10px
+}
+
+.fixed-alerts_top {
+  top: 10px
+}
+
+.fixed-alerts_right {
+  right: 10px
+}
+
+.fixed-alerts_left {
+  left: 10px
+}
+
+.fixed-alerts .alert {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
+  margin-bottom: 10px
+}
+
+.fixed-alerts .alert:last-child {
+  margin-bottom: 0
+}
+
+.alert--close > i {
+  color: currentColor;
+  font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 48;
+}
+
+.alert--icon > i {
+  font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 48;
+}
+

@@ -1,0 +1,63 @@
+{% extends 'scraper/base_site.html' %}
+{% load humanize %}
+
+
+{% block content %}
+  <section>
+    <div class="player">
+      <iframe src="https://www.youtube.com/embed/{{ video_metadata.id }}" title="{{ video_metadata.title }}" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="video__details spacer">
+      <h1 class="video__title">{{ video_metadata.title }}</h1>
+      <div class="typo typo__flex">
+        <span class="video__views dot">{{ video_metadata.view_count }} views</span>
+        <span class="video__published-at">{{ video_metadata.published_at | datestr }}</span>
+        <div class="menu__container">
+          <a href="" class="menu__btn">
+            <i class="material-symbols-outlined c100">&#xe8dc;</i>
+            <span class="video__likes">{{ video_metadata.like_count }}</span>
+          </a>
+          <button class="btn menu__btn">
+            <i class="material-symbols-outlined c100">&#xe2c4;</i>
+            <span class="video__download">Download</span>
+            <ul class="menu__btn--options">
+              {% include 'scraper/includes/video_stream.html' with menu_class='video__download' video_streams=video_streams video_title=video_metadata.title only %}
+            </ul>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="video__details--container spacer">
+      <a class="channel__profile" href="{% url 'channel' channel.id %}">
+        <img src="{{ channel.profile_url }}" alt="youtuber">
+      </a>
+      <div class="typo typo__flex">
+        <a href="{% url 'channel' channel.id %}" class="channel__title typo">{{ channel.title }}</a>
+        <span class="typo">{{ channel.subscriber }} subscribers</span>
+      </div>
+      <span class="video__description">{{ video_metadata.description }}</span>
+    </div>
+    <div class="video__comment--container">
+      <div class="video__comment--count">{{ video_metadata.comment_count }} Comments</div>
+      {% for comment in video_metadata.comments %}
+        <div class="video__comment">
+          <a class="channel__profile" href="{% url 'channel' comment.author.id %}">
+            <img src="{{ comment.author.thumbnail_url }}" alt="youtuber">
+          </a>
+          <div class="typo typo__flex typo__flex--nowrap">
+            <a href="{% url 'channel' comment.author.id %}" class="channel__title typo">{{ comment.author.title }}</a><br>
+            <span class="video__comment--comment-at typo">{{ comment.relative_published_date }}</span>
+          </div>
+          <span class="video__comment--text">{{ comment.text }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+  
+  <section class="video-grid">
+    {% include 'scraper/includes/video_grid.html' %}
+  </section>
+{% endblock content %}

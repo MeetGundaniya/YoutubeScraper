@@ -1,0 +1,5 @@
+{% extends 'scraper/base_site.html' %}
+
+{% block before_main %}
+  {% include 'scraper/includes/tags.html' with channels=channels current_channel=channel.id only%}
+{% endblock before_main %}

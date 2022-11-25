@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if title %}{{ title }} - {% endif %}YoutubeScraper | by Meet Gundaniya</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=YouTube+Sans:wght@300..900&display=swap">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:300italic,400italic,500italic,700italic|family=Roboto+Mono:400">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <link rel="stylesheet" href="{% static 'scraper/css/style.css' %}">
+  
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+        'opsz' 48
+      }
+  </style>
+
+  {% block exctracss %}{% endblock %}
+
+</head>
+
+<body class="dark custom-scroll">
+
+  <header id="masthead">
+    <div class="header__start">
+      <button id="guide-button" class="btn">
+        <i class="material-symbols-outlined c100">&#xe5d2;</i>
+      </button>
+      <a href="{% url 'home' %}">
+        <div class="logo">
+          <div class="logo__icon">
+            <span>Youtube</span><span>Scraper</span>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div id="search" class="header__center">
+      <form class="search__form" method="GET" action="{% url 'search-query' %}">
+        <div class="search__input">
+          <input type="text" placeholder="Search" name="search_query" {% if search_query %}value="{{ search_query }}"{% endif %}>
+        </div>
+        <button class="search__box btn" type="submit">
+          <i class="material-symbols-outlined c100">&#xe8b6;</i>
+        </button>
+      </form>
+      <button class="search__mic btn">
+        <i class="material-symbols-outlined c100">&#xe029;</i>
+      </button>
+    </div>
+    <div class="header__end">
+      <div class="apps">
+        <a href="#">
+          <i class="material-symbols-outlined c100">&#xe5c3;</i>
+        </a>
+      </div>
+      <div class="settings">
+        <a href="#">
+          <i class="material-symbols-outlined c100">&#xe5d4;</i>
+        </a>
+      </div>
+      <div class="user">
+        <a href="{{ github_link }}">
+          <span>Github</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  {% block alert_messages %}{% endblock alert_messages %}
+
+  
+  {% block before_main %}{% endblock before_main %}
+  <main class="main-container custom-scroll {% firstof css_class.main %}">
+    {% block content %}{% endblock content %}
+  </main>
+  {% block after_main %}{% endblock after_main %}
+
+  <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+  <script src="{% static 'http_response/js/jquery.cookie.js' %}"></script>
+  {% block extrajs %}{% endblock extrajs %}
+
+</body>
+
+</html>

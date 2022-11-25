@@ -1,0 +1,13 @@
+{% for stream in video_streams %}
+  <li class="{{ menu_class }}--link">
+    <a href="{{ stream.url }}" class="typo__flex typo__flex--nowrap" target="_blank" download="hi_hello.mp4">
+      <i class="material-symbols-outlined c100">
+        {% if stream.progressive %}&#xe405;
+        {% else %}&#xe440;
+        {% endif %}
+      </i>
+      <span>{{ stream.resolution }} ({{ stream.fps }} : {{ stream.size }})</span>
+    </a>
+  </li>
+{% endfor %}
+

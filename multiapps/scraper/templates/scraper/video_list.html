@@ -1,0 +1,53 @@
+{% extends 'scraper/base_site.html' %}
+
+
+{% block before_main %}
+  {% include 'scraper/includes/tags.html' with channels=channels current_channel=channel.id only%}
+{% endblock before_main %}
+
+
+{% block content %}
+  <section class="video-grid">
+    {% include 'scraper/includes/video_grid.html'%}
+  </section>
+{% endblock content %}
+
+
+{% block extrajs %}
+  {{ block.super }}
+  <script>
+    var processing;
+
+    $(document).ready(function () {
+      $("#hash-tags").on("mousewheel", function (e, delta) {
+        this.scrollLeft += (e.originalEvent.deltaY / 2);
+        e.preventDefault();
+      });
+
+      $(document).scroll(function(e){
+
+        if (processing) {
+          return false;
+        }
+
+        if ($(window).scrollTop() >= $(document).height() - $(window).height() - 500){
+          processing = true;
+          $.post(window.location.href, {"continuation_token": $.cookie("{{ token_name }}")}, function(data){
+            $("section.video-grid").append(data);
+            processing = false;
+          });
+        }
+    });
+
+
+
+
+
+
+
+    });
+  </script>
+{% endblock extrajs %}
+
+
+{% csrf_token %}
