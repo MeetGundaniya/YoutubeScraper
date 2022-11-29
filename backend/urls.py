@@ -23,3 +23,7 @@ urlpatterns = [
   path('admin/', admin.site.urls),
   path('', include('scraper.urls'))
 ]
+
+
+handler404 = 'core.views.response_not_found'
+handler500 = 'core.views.response_server_error'

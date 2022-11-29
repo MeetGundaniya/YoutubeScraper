@@ -3,9 +3,12 @@ Utility functions
 """
 
 # STDLIB LIBRARY
+import contextlib
+import cProfile
 import functools
 import inspect
 import logging
+import pstats
 from datetime import datetime, timedelta
 
 
@@ -75,8 +78,19 @@ def format_duration(length):
   return total_time
 
 
+@contextlib.contextmanager
+def cprofiling(n_fun=20):
+  print('\n\n')
+  with cProfile.Profile() as pr:
+    yield pr
+  stats = pstats.Stats(pr)
+  stats.sort_stats(pstats.SortKey.TIME)
+  stats.print_stats(n_fun)
+  print('\n')
+
 
 __all__ = [
   'lrc_cache',
   'format_duration',
+  'cprofiling',
 ]
