@@ -16,6 +16,9 @@ class DataParser:
   def __getitem__(self, key):
     return self._parsed_data[key]
 
+  def __contains__(self, key):
+    return key in self._parsed_data.keys()
+
   def _parse_html(self, html):
     if not isinstance(html, str):
       return {}
@@ -154,9 +157,11 @@ class DataParser:
         case {'channelRenderer': channel_renderer}:
           self._parsed_data.setdefault('channelRenderer', []).append(channel_renderer)
         case {'videoRenderer': video_renderer}:
-          self._parsed_data.setdefault('videoRenderer', []).append(self.videoRenderer(video_renderer))
+          with suppress(KeyError):
+            self._parsed_data.setdefault('videoRenderer', []).append(self.videoRenderer(video_renderer))
         case {'shelfRenderer': shelf_renderer}:
-          self._parsed_data.setdefault('shelfRenderer', []).append(self.shelfRenderer(shelf_renderer))
+          with suppress(KeyError):
+            self._parsed_data.setdefault('shelfRenderer', []).append(self.shelfRenderer(shelf_renderer))
         case {'playlistRenderer': playlist_renderer}:
           self._parsed_data.setdefault('playlistRenderer', []).append(playlist_renderer)
         case {'radioRenderer': radio_renderer}:

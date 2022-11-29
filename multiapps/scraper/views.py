@@ -133,7 +133,7 @@ class SearchTemplateView(TemplateView):
       messages.add_message(request, messages.ERROR, f'search box can\'t be empty')
       return redirect(reverse('home'))
 
-    ys = youtube.Search(search_query)
+    ys = youtube.Search(search_query, recommended=True)
 
     self.extra_context = {
       'videos': ys.video_generator(),
@@ -150,7 +150,7 @@ class SearchTemplateView(TemplateView):
     search_query = request.GET.get("search_query", None)
     continuation_token = request.POST.get("continuation_token", None)
 
-    ys = youtube.Search(search_query, token=continuation_token)
+    ys = youtube.Search(search_query, token=continuation_token, recommended=True)
     self.extra_context = {
       'videos': ys.video_generator(),
       'token_name': 'search_token',

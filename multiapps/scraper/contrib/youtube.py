@@ -305,7 +305,7 @@ class Search(Youtube):
       channel:[ id canonical_url title thumbnail_url ]]
     """
 
-    yield from self.parser['videoRenderer']
-    if self.recommended:
+    if self.recommended and 'shelfRenderer' in self.parser:
       for sr in self.parser['shelfRenderer']:
         yield from sr
+    yield from self.parser['videoRenderer']
