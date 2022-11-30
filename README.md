@@ -33,6 +33,8 @@ This is a first project from [![ineuron_logo](https://ineuron.ai/images/ineuron-
 
 #### Live demo: [yts-by-mg.herokuapp.com](https://yts-by-mg.herokuapp.com/)
 
+![project demo](https://github.com/MeetGundaniya/YoutubeScraper/tree/main/assets/media/demo.gif)
+
 ## URL Reference
 
 - ### Search video
